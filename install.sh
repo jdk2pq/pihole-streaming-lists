@@ -15,7 +15,7 @@
 # Dry-run (preview what would be added, no changes made):
 #   sudo bash install.sh --dry-run
 #
-# Available platforms: roku  peacock  paramount-plus  disney-plus
+# Available platforms: roku  peacock  paramount-plus  disney-plus  nbc
 # Default (no args): all platforms
 #
 # What this script does:

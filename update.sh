@@ -6,7 +6,7 @@
 #   sudo /opt/pihole-streaming-lists/update.sh roku peacock     # specific platforms
 #   sudo /opt/pihole-streaming-lists/update.sh --dry-run        # preview, no changes
 #
-# Available platforms: roku  peacock  paramount-plus  disney-plus
+# Available platforms: roku  peacock  paramount-plus  disney-plus  nbc
 #
 # Cron (weekly, all platforms):
 #   0 3 * * 0   root   /opt/pihole-streaming-lists/update.sh >> /var/log/pihole-streaming-lists.log 2>&1
@@ -26,7 +26,7 @@ set -euo pipefail
 GRAVITY_DB="${GRAVITY_DB:-/etc/pihole/gravity.db}"
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 EXPECTED_REMOTE="https://github.com/jdk2pq/pihole-streaming-lists"
-VALID_PLATFORMS=(roku peacock paramount-plus disney-plus)
+VALID_PLATFORMS=(roku peacock paramount-plus disney-plus nbc)
 DRY_RUN=false
 PLATFORMS=()
 ADDED=0

@@ -21,7 +21,7 @@ curl -sSL https://raw.githubusercontent.com/jdk2pq/pihole-streaming-lists/main/i
 curl -sSL https://raw.githubusercontent.com/jdk2pq/pihole-streaming-lists/main/install.sh | sudo bash -s -- roku peacock
 ```
 
-Available platforms: `roku` `peacock` `paramount-plus` `disney-plus`
+Available platforms: `roku` `peacock` `paramount-plus` `disney-plus` `nbc`
 
 **Prefer to read the script before running it?**
 
@@ -77,8 +77,9 @@ This repo reformats that work into plain-text files that can be dropped directly
 |---|---|---|---|---|
 | [Roku](#roku) | ✅ | — | ✅ | ✅ |
 | [Peacock](#peacock) | ✅ | ✅ | ✅ | ✅ |
-| [Paramount+](#paramount) | ✅ | ✅ | ✅ | — |
+| [Paramount+](#paramount) | ✅ | ✅ | ✅ | ✅ |
 | [Disney+](#disney) | — | — | — | ✅ |
+| [NBC](#nbc) | ✅ | — | — | — |
 
 ---
 
@@ -174,6 +175,13 @@ grep -v '^#\|^$' roku/denylist.txt | xargs -I{} pihole --black-list {}
 
 **Notes:**
 - Not tested thoroughly. Community feedback welcome — please open an issue if you have results to share.
+
+---
+
+## NBC
+
+**Files:**
+- [`nbc/allowlist.txt`](nbc/allowlist.txt) — Domains required for service functionality
 
 ---
 

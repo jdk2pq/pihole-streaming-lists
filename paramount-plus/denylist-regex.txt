@@ -1,0 +1,14 @@
+# Paramount+ — Regex Denylist
+# Source: https://gist.github.com/ozankiratli/801ba17705e7f2a904d2e443af5a64f8?permalink_comment_id=6094559#gistcomment-6094559
+#
+# Add each line as a separate regex entry in Pi-hole:
+#   Admin → Domains → Regex tab → Add to Denylist
+
+# ── VAI Core (ad tech) ────────────────────────────────────────────────────────
+(.|^)vaicore\.site$
+
+# ── Braze (push notification / marketing analytics) ──────────────────────────
+# NOTE: allowlist-regex.txt allows the specific IAD subdomain used for app
+# functionality (^(.+\.)?iad-[0-9]{2}\.braze\.com$). Pi-hole evaluates allowlist
+# regex before denylist regex, so that subdomain resolves correctly.
+(.|^)braze\.com$
