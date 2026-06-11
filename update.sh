@@ -171,16 +171,6 @@ resolve_type() {
   esac
 }
 
-# Returns the opposing list type (allowlist↔denylist, regex allowlist↔regex denylist)
-opposite_type() {
-  case "$1" in
-    0) echo 1 ;;
-    1) echo 0 ;;
-    2) echo 3 ;;
-    3) echo 2 ;;
-  esac
-}
-
 import_file() {
   local filepath="$1"
   local db_type="$2"
@@ -207,22 +197,19 @@ import_file() {
     local escaped_domain="${line//\'/\'\'}"
     local escaped_comment="${relative//\'/\'\'}"
 
-    # If this domain was previously added by us to the opposite list type
-    # (e.g. moved from denylist to allowlist), remove that stale entry first
-    # so the new list type takes effect. Only removes rows tagged with our
-    # comment prefix — never touches entries the user added manually.
-    local opp
-    opp=$(opposite_type "$db_type")
-    sqlite3 "$GRAVITY_DB" \
-      "DELETE FROM domainlist
-       WHERE type = $opp
-         AND domain = '$escaped_domain'
-         AND comment LIKE 'pihole-streaming-lists:%';"
-
+    # Single query that handles three cases:
+    #   1. Domain not in DB at all         → INSERT succeeds, changes()=1
+    #   2. Domain in DB with correct type  → WHERE NOT EXISTS is false, no INSERT, changes()=0
+    #   3. Domain in DB with wrong type    → WHERE NOT EXISTS is false but INSERT OR REPLACE
+    #      fires on the UNIQUE conflict, replacing the old row, changes()=1
+    # This correctly handles domains moved between allowlist and denylist.
     local result
     result=$(sqlite3 "$GRAVITY_DB" \
-      "INSERT OR IGNORE INTO domainlist (type, domain, enabled, comment)
-       VALUES ($db_type, '$escaped_domain', 1, 'pihole-streaming-lists: $escaped_comment');
+      "INSERT OR REPLACE INTO domainlist (type, domain, enabled, comment)
+       SELECT $db_type, '$escaped_domain', 1, 'pihole-streaming-lists: $escaped_comment'
+       WHERE NOT EXISTS (
+         SELECT 1 FROM domainlist WHERE domain = '$escaped_domain' AND type = $db_type
+       );
        SELECT changes();")
 
     if [[ "$result" -eq 1 ]]; then
