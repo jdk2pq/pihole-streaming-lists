@@ -30,3 +30,18 @@ bakery.pplus.paramount.tech
 
 # ── Required for streaming on some devices (e.g. Nvidia Shield) ──────────────
 imasdk.googleapis.com
+
+# ── Google DAI (Dynamic Ad Insertion) ────────────────────────────────────────
+# Paramount+ uses server-side ad insertion via Google DAI. Blocking this domain
+# prevents video from playing entirely — the ads and the stream share the same
+# delivery path. Allowing it means some ads may still play. This is a known
+# limitation of SSAI; there is no way to block ads here without also blocking
+# the video content.
+# Source: https://gist.github.com/ozankiratli/801ba17705e7f2a904d2e443af5a64f8?permalink_comment_id=6094559#gistcomment-6094559
+dai.google.com
+pubads.g.doubleclick.net
+google-ohttp-relay-safebrowsing.fastly-edge.com
+
+# ── Analytics / telemetry required for playback ───────────────────────────────
+mobile-collector.newrelic.com
+cbs.hb-api.omtrdc.net

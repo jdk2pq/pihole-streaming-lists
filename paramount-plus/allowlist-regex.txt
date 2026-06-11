@@ -7,3 +7,14 @@
 
 # ── Conviva video analytics (required for video loading) ─────────────────────
 ^[^.]+\.cws\.conviva\.com$
+# IPv4/IPv6 Conviva subdomains (deeper nesting variant)
+# Source: https://gist.github.com/ozankiratli/801ba17705e7f2a904d2e443af5a64f8?permalink_comment_id=6094559#gistcomment-6094559
+^[a-z0-9]+\.ipv[46]\.cws\.conviva\.com$
+
+# ── Brightline (interactive ad/content overlay — allow for playback) ──────────
+(.|^)brightline\.tv$
+
+# ── Braze push notifications (specific IAD subdomain only) ───────────────────
+# The broader braze.com is denied in denylist-regex.txt; this allows only the
+# specific subset used for app functionality.
+^(.+\.)?iad-[0-9]{2}\.braze\.com$

@@ -5,6 +5,13 @@
 # NOTE: www.googletagmanager.com appears twice in the upstream source;
 # it is listed once here.
 
+# Source: https://gist.github.com/ozankiratli/801ba17705e7f2a904d2e443af5a64f8?permalink_comment_id=6094559#gistcomment-6094559
+splice-media.paramountplus.com
+splice.paramountplus.com
+cbsinteractive.data.adobedc.net
+conduit.redfast.com
+sparrow.paramountplus.com
+
 enduser.adsrvr.org
 cdn.privacy.paramount.com
 www.googletagmanager.com

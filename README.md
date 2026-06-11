@@ -155,12 +155,14 @@ grep -v '^#\|^$' roku/denylist.txt | xargs -I{} pihole --black-list {}
 
 **Files:**
 - [`paramount-plus/allowlist.txt`](paramount-plus/allowlist.txt) — Domains required for service functionality
-- [`paramount-plus/allowlist-regex.txt`](paramount-plus/allowlist-regex.txt) — Conviva regex (required for video loading)
+- [`paramount-plus/allowlist-regex.txt`](paramount-plus/allowlist-regex.txt) — Regex patterns required for video loading
 - [`paramount-plus/denylist.txt`](paramount-plus/denylist.txt) — Ad/tracking domains
+- [`paramount-plus/denylist-regex.txt`](paramount-plus/denylist-regex.txt) — Regex patterns for ad tech and analytics
 
 **Notes:**
+- Paramount+ uses **Google DAI (Dynamic Ad Insertion)**, which embeds ads server-side into the same video stream. `dai.google.com` must be allowed — blocking it stops video playback entirely. This means some ads may still play on Paramount+; there is no way to block them without also blocking the video.
+- `imasdk.googleapis.com` is required for streaming on Nvidia Shield and likely other Android TV devices.
 - Paramount+ changes its delivery infrastructure frequently. If something breaks, check your Pi-hole query log for newly blocked domains.
-- `imasdk.googleapis.com` is in the allowlist — confirmed required for streaming on Nvidia Shield and likely other Android TV devices.
 - If you use **Unbound with DNSSEC**, browser access to Paramount+ will break even with all allowlist entries applied. Roku still works.
 
 ---
