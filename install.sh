@@ -57,7 +57,7 @@ fi
 for cmd in git sqlite3 pihole; do
   if ! command -v "$cmd" &>/dev/null; then
     error "Required command not found: $cmd"
-    [[ "$cmd" == sqlite3 ]] && error "  Install with: sudo apt install sqlite3"
+    if [[ "$cmd" == sqlite3 ]]; then error "  Install with: sudo apt install sqlite3"; fi
     exit 1
   fi
 done

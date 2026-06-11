@@ -62,7 +62,7 @@ for arg in "$@"; do
     *)
       valid=false
       for p in "${VALID_PLATFORMS[@]}"; do
-        [[ "$arg" == "$p" ]] && valid=true && break
+        if [[ "$arg" == "$p" ]]; then valid=true; break; fi
       done
       if [[ "$valid" == false ]]; then
         error "Unknown platform: '$arg'"
@@ -78,7 +78,7 @@ if [[ ${#PLATFORMS[@]} -eq 0 ]]; then
   PLATFORMS=("${VALID_PLATFORMS[@]}")
 fi
 
-[[ "$DRY_RUN" == true ]] && warn "Dry-run mode — no changes will be made."
+if [[ "$DRY_RUN" == true ]]; then warn "Dry-run mode — no changes will be made."; fi
 
 # ── Preflight ─────────────────────────────────────────────────────────────────
 
@@ -90,7 +90,7 @@ fi
 for cmd in sqlite3 git pihole; do
   if ! command -v "$cmd" &>/dev/null; then
     error "Required command not found: $cmd"
-    [[ "$cmd" == sqlite3 ]] && error "  Install with: sudo apt install sqlite3"
+    if [[ "$cmd" == sqlite3 ]]; then error "  Install with: sudo apt install sqlite3"; fi
     exit 1
   fi
 done
@@ -147,7 +147,7 @@ backup_db() {
   done
 }
 
-[[ "$DRY_RUN" == false ]] && backup_db
+if [[ "$DRY_RUN" == false ]]; then backup_db; fi
 
 # ── Import helpers ────────────────────────────────────────────────────────────
 
@@ -185,7 +185,7 @@ import_file() {
     line="${line%%#*}"
     line="${line#"${line%%[![:space:]]*}"}"
     line="${line%"${line##*[![:space:]]}"}"
-    [[ -z "$line" ]] && continue
+    if [[ -z "$line" ]]; then continue; fi
 
     if [[ "$DRY_RUN" == true ]]; then
       echo "    [dry-run] would add: $line"
@@ -212,7 +212,9 @@ import_file() {
     fi
   done < "$filepath"
 
-  [[ "$DRY_RUN" == false && "$file_added" -eq 0 ]] && warn "  (all entries already present)"
+  if [[ "$DRY_RUN" == false && "$file_added" -eq 0 ]]; then
+    warn "  (all entries already present)"
+  fi
 }
 
 # ── Main import loop ──────────────────────────────────────────────────────────
@@ -238,7 +240,7 @@ fi
 
 for filepath in "${list_files[@]}"; do
   db_type=$(resolve_type "$filepath")
-  [[ -z "$db_type" ]] && continue
+  if [[ -z "$db_type" ]]; then continue; fi
   import_file "$filepath" "$db_type"
 done
 
