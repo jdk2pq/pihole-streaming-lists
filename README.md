@@ -160,7 +160,7 @@ grep -v '^#\|^$' roku/denylist.txt | xargs -I{} pihole --black-list {}
 
 **Notes:**
 - Paramount+ changes its delivery infrastructure frequently. If something breaks, check your Pi-hole query log for newly blocked domains.
-- `imasdk.googleapis.com` may be needed for browser playback on PC — test before committing to blocking it.
+- `imasdk.googleapis.com` is in the allowlist — confirmed required for streaming on Nvidia Shield and likely other Android TV devices.
 - If you use **Unbound with DNSSEC**, browser access to Paramount+ will break even with all allowlist entries applied. Roku still works.
 
 ---

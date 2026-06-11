@@ -27,3 +27,6 @@ thumbnails.cbsig.net
 
 # ── Mobile app ───────────────────────────────────────────────────────────────
 bakery.pplus.paramount.tech
+
+# ── Required for streaming on some devices (e.g. Nvidia Shield) ──────────────
+imasdk.googleapis.com
