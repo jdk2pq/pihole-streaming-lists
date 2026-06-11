@@ -253,7 +253,7 @@ if [[ "$DRY_RUN" == true ]]; then
   warn "Dry-run complete — gravity.db was not modified."
 elif [[ "$ADDED" -gt 0 ]]; then
   info "Reloading Pi-hole..."
-  pihole restartdns reload-lists
+  pihole reloaddns
   info "Done."
 else
   info "Nothing new to add — Pi-hole not reloaded."
