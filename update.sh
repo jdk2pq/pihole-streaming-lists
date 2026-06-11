@@ -171,6 +171,16 @@ resolve_type() {
   esac
 }
 
+# Returns the opposing list type (allowlist↔denylist, regex allowlist↔regex denylist)
+opposite_type() {
+  case "$1" in
+    0) echo 1 ;;
+    1) echo 0 ;;
+    2) echo 3 ;;
+    3) echo 2 ;;
+  esac
+}
+
 import_file() {
   local filepath="$1"
   local db_type="$2"
@@ -196,6 +206,18 @@ import_file() {
     # Escape single quotes in both the domain and the comment for SQLite
     local escaped_domain="${line//\'/\'\'}"
     local escaped_comment="${relative//\'/\'\'}"
+
+    # If this domain was previously added by us to the opposite list type
+    # (e.g. moved from denylist to allowlist), remove that stale entry first
+    # so the new list type takes effect. Only removes rows tagged with our
+    # comment prefix — never touches entries the user added manually.
+    local opp
+    opp=$(opposite_type "$db_type")
+    sqlite3 "$GRAVITY_DB" \
+      "DELETE FROM domainlist
+       WHERE type = $opp
+         AND domain = '$escaped_domain'
+         AND comment LIKE 'pihole-streaming-lists:%';"
 
     local result
     result=$(sqlite3 "$GRAVITY_DB" \
