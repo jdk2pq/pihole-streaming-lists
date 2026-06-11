@@ -1,0 +1,18 @@
+# Paramount+ — Exact Denylist
+# Source: https://gist.github.com/ozankiratli/801ba17705e7f2a904d2e443af5a64f8
+# Last upstream update: July 10, 2025
+#
+# NOTE: imasdk.googleapis.com may be needed for browser playback on PC.
+# Test in your environment before blocking it permanently.
+# NOTE: www.googletagmanager.com appears twice in the upstream source;
+# it is listed once here.
+
+imasdk.googleapis.com
+enduser.adsrvr.org
+cdn.privacy.paramount.com
+www.googletagmanager.com
+pagead2.googlesyndication.com
+availability-fastly.syncbak-mediastore-cedexis.cbsaavideo.com
+cbsi.demdex.net
+vod-gcs-qwilt.cbsaavideo.com
+vod-gcs-google.cbsaavideo.com

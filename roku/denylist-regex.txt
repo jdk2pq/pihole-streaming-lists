@@ -1,0 +1,27 @@
+# Roku — Regex Denylist
+# Source: https://gist.github.com/ozankiratli/801ba17705e7f2a904d2e443af5a64f8
+# Last upstream update: July 10, 2025
+#
+# Add each line as a separate regex entry in Pi-hole:
+#   Admin → Domains → Regex tab → Add to Denylist
+# Or via CLI: pihole --regex '<pattern>'
+#
+# ── Logs, ads, analytics, and telemetry subdomains ───────────────────────────
+^(([^.]+\.)*(logs|ads|web|prod\.mobile|cti|voice)(\.[^.]+)*\.)roku\.com$
+
+# ── Known ad/tracking server codenames ───────────────────────────────────────
+^(([^.]+\.)*[^.]*(amarillo|amoeba|austin|benjamin|bryan|camden|cooper|copper|digdug|external|giga|gilbert|griffin|hereford|lb|liberty|littlefield|longview|madison|marlin|midland|paolo|richmond|rollingwood|scribe|sugarland|tyler|victoria|windsor)[^.]*(\.[^.]+)*\.))roku\.com$
+
+# ── Specific unwanted top-level subdomains ────────────────────────────────────
+^((captive|cloudservices|wwwimg)\.)roku\.com$
+
+# ── Tracking/analytics on sr.roku.com ────────────────────────────────────────
+^((bif|microsites|traces|track|userdata)\.sr\.)roku\.com$
+
+# ── ravm.tv (Roku ad measurement) ────────────────────────────────────────────
+^([^.]+\.)*ravm\.tv$
+
+# ── OPTIONAL: Block all of The Roku Channel (.sr.roku.com / .sc.roku.com) ────
+# Uncomment ONLY if you do NOT use The Roku Channel.
+# Also remove the Section 2 entries from allowlist.txt if you enable this.
+# ^[^.]+\.(sr|sc)\.roku\.com$

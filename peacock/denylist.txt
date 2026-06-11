@@ -1,0 +1,8 @@
+# Peacock — Exact Denylist
+# Source: https://gist.github.com/ozankiratli/801ba17705e7f2a904d2e443af5a64f8
+# Last upstream update: July 10, 2025
+#
+# WARNING: mt.ssai.peacocktv.com has been reported to interfere with Amazon
+# Echo devices. Use with caution and verify in your environment first.
+
+mt.ssai.peacocktv.com

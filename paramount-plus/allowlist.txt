@@ -1,0 +1,29 @@
+# Paramount+ — Exact Allowlist
+# Source: https://gist.github.com/ozankiratli/801ba17705e7f2a904d2e443af5a64f8
+# Last upstream update: July 10, 2025
+#
+# NOTE: Paramount+ settings change often. If you experience issues, check your
+# Pi-hole query log and whitelist any blocked domains that appear there.
+# Under aggressive blocking, Paramount+ (even ad-free tiers) can break.
+# NOTE: If you use Unbound with DNSSEC, browser access to Paramount+ breaks
+# even with these entries. Roku still works.
+
+# ── Main service ──────────────────────────────────────────────────────────────
+saa.paramountplus.com
+saa.cbsi.com
+
+# ── Video delivery ────────────────────────────────────────────────────────────
+vod-gcs-cedexis.cbsaavideo.com
+cbsinteractive.hb.omtrdc.net
+cbsi.live.ott.irdeto.com
+
+# ── Playback position (resume) ────────────────────────────────────────────────
+tags.tiqcdn.com
+
+# ── Images ───────────────────────────────────────────────────────────────────
+wwwimage-us.pplusstatic.com
+wwwimage-secure.cbsstatic.com
+thumbnails.cbsig.net
+
+# ── Mobile app ───────────────────────────────────────────────────────────────
+bakery.pplus.paramount.tech

@@ -1,0 +1,19 @@
+# Peacock — Exact Allowlist
+# Source: https://gist.github.com/ozankiratli/801ba17705e7f2a904d2e443af5a64f8
+# Last upstream update: July 10, 2025
+#
+# Domains marked "Under consideration" are included here; remove them if
+# you experience issues with other devices (see README for the Echo caveat).
+
+# ── Required for account access and content ───────────────────────────────────
+mytv.clients.peacocktv.com
+bff-ext.clients.peacocktv.com
+imageservice.disco.peacocktv.com
+play.ovp.peacocktv.com
+
+# ── Under consideration (may be needed depending on your setup) ───────────────
+atom.peacocktv.com
+cybertron.id.peacocktv.com
+meg.disco.peacocktv.com
+ovp.peacocktv.com
+pconfig-prd.cdn.peacocktv.com

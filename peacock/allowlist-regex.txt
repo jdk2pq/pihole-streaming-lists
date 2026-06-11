@@ -1,0 +1,10 @@
+# Peacock — Regex Allowlist
+# Source: https://gist.github.com/ozankiratli/801ba17705e7f2a904d2e443af5a64f8
+# Last upstream update: July 10, 2025
+#
+# Add each line as a separate regex entry in Pi-hole:
+#   Admin → Domains → Regex tab → Add to Allowlist
+
+# ── Video CDN (required for video playback) ───────────────────────────────────
+# Matches: g<hash>-vod-us-cmaf-prd-mc.cdn.peacocktv.com
+g[^.]+-vod-us-cmaf-prd-mc\.cdn\.peacocktv\.com
